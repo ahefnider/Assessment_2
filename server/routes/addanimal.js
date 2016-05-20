@@ -6,7 +6,8 @@ var quantity = require('./randomquantity');
 
 router.post('/', function (req, res) {
   var animal = req.body;
-  // var quantity = randomNumber(1, 100);
+  var bloop = quantity(1, 100);
+  console.log(quantity);
   pg.connect(connectionString, function (err, client, done) {
     if (err) {
       res.sendStatus(500);
@@ -14,7 +15,7 @@ router.post('/', function (req, res) {
 
     client.query('INSERT INTO zooanimals (species, quantity) ' +
                   'VALUES ($1, $2)',
-                   [animal.species, animal.quantity],
+                   [animal.species, bloop],
                  function (err, result) {
                    done();
 
